@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel="false" thread-count="1" verbose="1">
+
+    <!--Values for Environment(Android or IOS) -->
+    <parameter name="env" value="Android"/>
+
+    <test name="Sri Lankan Airlines application Contact Us Screen UI Elements Verification">
+        <classes>
+            <class name="tests.mobileTest.contactUsScreen.contactUsScreenUITest"/>
+        </classes>
+    </test>
+
+</suite>
