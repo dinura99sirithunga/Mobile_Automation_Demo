@@ -9,13 +9,13 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <appiumVersion>7.6.0</appiumVersion>
-        <seleniumVersion>3.141.59</seleniumVersion>
+        <appiumVersion>9.2.2</appiumVersion>
+        <seleniumVersion>4.8.0</seleniumVersion>
         <testNgVersion>7.5</testNgVersion>
-        <extentReports>4.0.9</extentReports>
+        <extentReports>5.1.0</extentReports>
     </properties>
 
     <dependencies>

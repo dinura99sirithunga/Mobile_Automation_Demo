@@ -1,15 +1,13 @@
 package util;
 
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
+import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.TouchAction;
-import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import io.appium.java_client.touch.offset.PointOption;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.ElementOption;
+import org.openqa.selenium.*;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Pause;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
@@ -22,29 +20,27 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.time.Duration;
-import java.util.Arrays;
 import java.util.Collections;
 
-import static io.appium.java_client.touch.WaitOptions.waitOptions;
 import static java.time.Duration.ofSeconds;
 
 public class CommonOperations {
-    private AppiumDriver<MobileElement> androidDriver;
+    private final AppiumDriver androidDriver;
 
     int sleepTime;
 
-    public CommonOperations(AppiumDriver<MobileElement> androidDriver) {
+    public CommonOperations(AppiumDriver androidDriver) {
         this.androidDriver = androidDriver;
         PageFactory.initElements(new AppiumFieldDecorator(androidDriver), this);
     }
 
-    public boolean isPageLoading(AppiumDriver<MobileElement> androidDriver) {
+    public boolean isPageLoading(AppiumDriver androidDriver) {
         JavascriptExecutor js = (JavascriptExecutor) androidDriver;
         String strExec = "return document.readyState!=\'complete\';";
         return ((Boolean) js.executeScript(strExec, new Object[0])).booleanValue();
     }
 
-    public void waitUntilPageLoaded(AppiumDriver<MobileElement> androidDriver) {
+    public void waitUntilPageLoaded(AppiumDriver androidDriver) {
         while (this.isPageLoading(androidDriver)) {
             try {
                 Thread.sleep((long) this.sleepTime);
@@ -62,19 +58,19 @@ public class CommonOperations {
         }
     }
 
-    public WebElement waitUntilElementVisible(AppiumDriver<MobileElement> androidDriver, WebElement element, int delay) {
+    public void waitUntilElementVisible(AppiumDriver androidDriver, WebElement element, int delay) {
         try {
-            WebDriverWait wait = new WebDriverWait(androidDriver, delay);
-            return wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(element)));
+            WebDriverWait wait = new WebDriverWait(androidDriver,Duration.ofSeconds(10));
+            wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(element)));
         } catch (NoSuchElementException e) {
             throw new RuntimeException("Web element not visible within given time" + element + " Time " + delay);
         }
     }
 
-    public WebElement waitForElementToBeClickable(AppiumDriver<MobileElement> androidDriver, WebElement element, int delay) {
+    public void waitForElementToBeClickable(AppiumDriver androidDriver, WebElement element, int delay) {
     try {
-        WebDriverWait wait = new WebDriverWait(androidDriver, delay);
-        return wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(element)));
+        WebDriverWait wait = new WebDriverWait(androidDriver,Duration.ofSeconds(delay));
+        wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(element)));
     } catch (NoSuchElementException e) {
         throw new RuntimeException("Web element not visible within given time" + element + " Time " + delay);
     }
@@ -136,5 +132,21 @@ public class CommonOperations {
         robot.keyPress(KeyEvent.VK_ENTER);
         robot.delay(150);
         robot.keyRelease(KeyEvent.VK_ENTER);
+    }
+
+    private void dragAndDrop(String dragElementDesc, WebElement dropElementDesc) {
+        // Locate the drag element (puzzle piece) by its content-desc
+        WebElement dragElement = androidDriver.findElement(By.ById.id(dragElementDesc));
+
+        // Locate the drop element (target location) by its content-desc
+        WebElement dropElement = androidDriver.findElement(By.ById.id(dragElementDesc));
+
+        // Create a new TouchAction for drag and drop
+        TouchAction action = new TouchAction((PerformsTouchActions) androidDriver);
+        action.longPress(ElementOption.element(dragElement))
+                .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1)))
+                .moveTo(ElementOption.element(dropElement))
+                .release()
+                .perform();
     }
 }
