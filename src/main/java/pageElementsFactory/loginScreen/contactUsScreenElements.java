@@ -59,6 +59,22 @@ public class contactUsScreenElements {
         commonOperations.waitForElementToBeClickable(androidDriver, loginTabBtn, 30);
         return loginTabBtn.isDisplayed();
     }
+    public boolean verifyLoginTabBtn() {
+        commonOperations.waitForElementToBeClickable(androidDriver, loginTabBtn, 30);
+        return loginTabBtn.isDisplayed();
+    }
+    public boolean verifySignUpTabBtn() {
+        commonOperations.waitForElementToBeClickable(androidDriver, loginTabBtn, 30);
+        return signUpTabBtn.isDisplayed();
+    }
+    public String verifySignUpTabBtnTxt() {
+        commonOperations.waitForElementToBeClickable(androidDriver, loginTabBtn, 30);
+        return loginTabBtnTxt.getText();
+    }
+    public String verifyLoginTabBtnTxt() {
+        commonOperations.waitForElementToBeClickable(androidDriver, loginTabBtn, 30);
+        return signUpTabBtnTxt.getText();
+    }
 
 
 
