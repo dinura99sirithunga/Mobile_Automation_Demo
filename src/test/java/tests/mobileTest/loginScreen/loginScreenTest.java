@@ -1,10 +1,10 @@
 package tests.mobileTest.loginScreen;
 
-import org.testng.SkipException;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pageElementsFactory.homeScreen.homeScreenElements;
-import pageElementsFactory.formScreen.loginScreenElements;
+import pageElementsFactory.formScreen.formScreenElements;
+import pageElementsFactory.loginScreen.loginScreenElements;
 import util.baseConfig;
 
 public class loginScreenTest extends baseConfig {

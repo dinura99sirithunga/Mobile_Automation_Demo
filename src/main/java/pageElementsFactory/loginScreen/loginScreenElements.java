@@ -7,12 +7,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import util.CommonOperations;
 
-public class contactUsScreenElements {
+public class loginScreenElements {
 
     public CommonOperations commonOperations;
     AppiumDriver androidDriver;
 
-    public contactUsScreenElements(AppiumDriver androidDriver) {
+    public loginScreenElements(AppiumDriver androidDriver) {
         this.androidDriver = androidDriver;
         commonOperations = new CommonOperations(androidDriver);
         PageFactory.initElements(new AppiumFieldDecorator(androidDriver), this);
