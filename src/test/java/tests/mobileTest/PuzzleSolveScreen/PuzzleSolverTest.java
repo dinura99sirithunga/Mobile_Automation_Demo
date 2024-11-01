@@ -16,10 +16,13 @@ public class PuzzleSolverTest extends baseConfig {
 
         // Initialize Puzzle Screen Elements
         puzzleScreenElements = new PuzzleScreenElements(appiumDriver);
+
         //Tap On Drag button to navigate to correct screen
         puzzleScreenElements.tapOnDrag();
+
         // Start solving puzzle and assert success criteria
         puzzleScreenElements.dragAndDrop();
+
         test.get().info("Puzzle solved action executed.");
 
         // Add assertions based on success criteria

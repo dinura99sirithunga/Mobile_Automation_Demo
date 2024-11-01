@@ -141,6 +141,7 @@ public class PuzzleScreenElements {
     }
 
     public void tapOnDrag(){
+        commonOperations.waitUntilElementVisible(androidDriver,Drag,10);
         Drag.click();
     }
 }

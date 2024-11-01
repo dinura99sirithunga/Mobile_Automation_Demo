@@ -54,7 +54,7 @@ public class baseConfig extends ExtentTestNGReportBuilder {
 
             // Define reset settings; fullReset and noReset are both set to false,
             // meaning the app state will be preserved across tests.
-            dcap.setCapability("noReset", false);
+            dcap.setCapability("noReset", true);
             dcap.setCapability("appium:fullReset", false);
 
             // Sets adb execution timeout, which allows the server to wait longer for adb commands to complete.
