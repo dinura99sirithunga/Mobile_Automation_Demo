@@ -4,6 +4,8 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
 import java.net.MalformedURLException;
@@ -28,7 +30,7 @@ public class baseConfig extends ExtentTestNGReportBuilder {
 
     @BeforeTest
     // Initializes the application setup before running tests
-    public void setupTheApplication() throws MalformedURLException, Exception {
+    public void setupTheApplication() throws  Exception {
         // Desired capabilities used to specify device and application configuration.
         DesiredCapabilities dcap = new DesiredCapabilities();
 
@@ -74,7 +76,7 @@ public class baseConfig extends ExtentTestNGReportBuilder {
         }
     }
 
-    @AfterClass
+    @AfterMethod
     // Terminates the Appium driver session after tests complete.
     public void endDriver() {
         appiumDriver.quit();

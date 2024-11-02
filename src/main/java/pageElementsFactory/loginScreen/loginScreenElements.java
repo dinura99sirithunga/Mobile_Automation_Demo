@@ -118,7 +118,7 @@ public class loginScreenElements {
         return loginBtnTxt.getText();
     }
     public String verifySuccessAlertTitle() {
-        commonOperations.waitForElementToBeClickable(androidDriver, successAlertTitle, 30);
+        commonOperations.waitForElementToBeClickable(androidDriver, successAlertTitle, 10);
         return successAlertTitle.getText();
     }
     public String verifySuccessAlertMessage() {
